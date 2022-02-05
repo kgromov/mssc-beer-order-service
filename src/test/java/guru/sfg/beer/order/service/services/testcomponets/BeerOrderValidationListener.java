@@ -20,9 +20,9 @@ public class BeerOrderValidationListener {
     private final JmsTemplate jmsTemplate;
 
     @JmsListener(destination = JmsConfig.VALIDATE_ORDER_QUEUE)
-    public void list(Message msg){
+    public void list(Message<ValidateOrderRequest> msg){
 
-        ValidateOrderRequest request = (ValidateOrderRequest) msg.getPayload();
+        ValidateOrderRequest request = msg.getPayload();
 
         System.out.println("########### I RAN ########");
 

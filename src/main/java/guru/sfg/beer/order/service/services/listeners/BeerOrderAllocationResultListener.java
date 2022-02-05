@@ -19,13 +19,13 @@ public class BeerOrderAllocationResultListener {
 
     @JmsListener(destination = JmsConfig.ALLOCATE_ORDER_RESPONSE_QUEUE)
     public void listen(AllocateOrderResult result){
-        if(!result.getAllocationError() && !result.getPendingInventory()){
+        if(!result.isAllocationError() && !result.isPendingInventory()){
             //allocated normally
             beerOrderManager.beerOrderAllocationPassed(result.getBeerOrderDto());
-        } else if(!result.getAllocationError() && result.getPendingInventory()) {
+        } else if(!result.isAllocationError() && result.isPendingInventory()) {
             //pending inventory
             beerOrderManager.beerOrderAllocationPendingInventory(result.getBeerOrderDto());
-        } else if(result.getAllocationError()){
+        } else if(result.isAllocationError()){
             //allocation error
             beerOrderManager.beerOrderAllocationFailed(result.getBeerOrderDto());
         }
