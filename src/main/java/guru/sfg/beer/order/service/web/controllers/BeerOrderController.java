@@ -20,24 +20,21 @@ package guru.sfg.beer.order.service.web.controllers;
 import guru.sfg.beer.order.service.services.BeerOrderService;
 import guru.sfg.brewery.model.BeerOrderDto;
 import guru.sfg.brewery.model.BeerOrderPagedList;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RequestMapping("/api/v1/customers/{customerId}/")
 @RestController
+@RequestMapping("/api/v1/customers/{customerId}/")
+@RequiredArgsConstructor
 public class BeerOrderController {
-
     private static final Integer DEFAULT_PAGE_NUMBER = 0;
     private static final Integer DEFAULT_PAGE_SIZE = 25;
 
     private final BeerOrderService beerOrderService;
-
-    public BeerOrderController(BeerOrderService beerOrderService) {
-        this.beerOrderService = beerOrderService;
-    }
 
     @GetMapping("orders")
     public BeerOrderPagedList listOrders(@PathVariable("customerId") UUID customerId,

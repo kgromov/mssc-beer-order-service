@@ -19,12 +19,14 @@ package guru.sfg.brewery.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import guru.sfg.beer.order.service.domain.BeerOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -48,5 +50,7 @@ public class CustomerDto {
     private OffsetDateTime lastModifiedDate = null;
 
     private String name;
+    private UUID apiKey;
+    private Set<BeerOrder> beerOrders;
 
 }
